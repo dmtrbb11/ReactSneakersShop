@@ -7,7 +7,7 @@ let LikedPage = (props) => {
         <h2 className="sneakers_list-h2">Мои закладки</h2>
       </div>
       <div className="sneakers_list-grid">
-        {props.sneakersLikedArr.map((e,index) =>{
+        {props.sneakersLikedArr.map((e, index) => {
           return (
             <SneakerItem
               likedArr={props.sneakersLikedArr}
@@ -17,11 +17,13 @@ let LikedPage = (props) => {
               imgURL={e.imgURL}
               sneakerObj={e}
               isLiked={true}
+              imgPlusClicked={true}
+              sneakersCartArr={props.sneakersCartArr}
+              updateLikedArr={props.setSneakersLikedArr}
+              updateCardArr={props.setSneakersCartArr}
             />
           );
         })}
-
-        
       </div>
     </section>
   );

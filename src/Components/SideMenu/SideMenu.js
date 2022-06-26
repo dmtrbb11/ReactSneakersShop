@@ -2,10 +2,7 @@ import styles from "./SideMenu.module.css";
 import axios from "axios";
 
 let SideMenu = ({ closeCardClick, sneakersCartArr, updateCardArr }) => {
-
-
-
-  const deleteItemCard = (id) => {
+  const deleteItemCard = (id, sneakerObj) => {
     axios.delete(
       `https://626e76ade58c6fabe2df4f7c.mockapi.io/sneakersCard/${id}`
     );
@@ -14,8 +11,13 @@ let SideMenu = ({ closeCardClick, sneakersCartArr, updateCardArr }) => {
         return e.id !== id;
       })
     );
-    console.log(id);
   };
+
+  // total order price
+  let sum = 0;
+  for (let i = 0; i < sneakersCartArr.length; i++) {
+    sum = sum + parseInt(sneakersCartArr[i].price.replace(/[^0-9]/g, ""));
+  }
 
   return (
     <div className={styles.darkbg}>
@@ -40,7 +42,7 @@ let SideMenu = ({ closeCardClick, sneakersCartArr, updateCardArr }) => {
                     <span className={styles.basket_item_span}>{e.price}</span>
                   </div>
                   <button
-                    onClick={() => deleteItemCard(e.id)}
+                    onClick={() => deleteItemCard(e.id, e)}
                     className={styles.basket_item_btn}
                   ></button>
                 </div>
@@ -51,7 +53,7 @@ let SideMenu = ({ closeCardClick, sneakersCartArr, updateCardArr }) => {
             <div className={styles.footer_txt}>
               <span className={styles.total_txt}>Итого: </span>
               <div className={styles.dashed_line}></div>
-              <span className={styles.total_price}>21 498 руб. </span>
+              <span className={styles.total_price}>{sum + " руб."}</span>
             </div>
             <button className={styles.order_btn}>Оформить заказ</button>
           </div>

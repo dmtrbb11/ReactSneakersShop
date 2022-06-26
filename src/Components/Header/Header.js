@@ -1,6 +1,13 @@
 import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 let Header = (props) => {
+  
+  // calculating sum in header
+  let sum = 0;
+  for (let i = 0; i < props.sneakersCartArr.length; i++) {
+    sum = sum + parseInt(props.sneakersCartArr[i].price.replace(/[^0-9]/g, ""));
+  }
+
   return (
     <header className={styles.header}>
       <Link to="/">
@@ -21,7 +28,7 @@ let Header = (props) => {
             alt="basket"
             className={styles.basket_img}
           />
-          <span className={styles.basket_price}>1205 руб.</span>
+          <span className={styles.basket_price}>{sum + " руб."}</span>
         </div>
         <Link to="/liked">
           <img
@@ -33,13 +40,15 @@ let Header = (props) => {
             className={styles.favorites}
           />
         </Link>
-        <img
-          width={20}
-          height={20}
-          src="/img/profile.svg"
-          alt="profile"
-          className={styles.profile}
-        />
+        <Link to="/profile">
+          <img
+            width={20}
+            height={20}
+            src="/img/profile.svg"
+            alt="profile"
+            className={styles.profile}
+          />
+        </Link>
       </div>
     </header>
   );

@@ -5,13 +5,13 @@ let HomePage = ({
   setSearchValue,
   sneakersArr,
   sneakersLikedArr,
-  setSneakersLikedArr,
+  updateLikedArr,
   setSneakersCartArr,
+  sneakersCartArr,
 }) => {
   let searchSneakers = (e) => {
     setSearchValue(e.target.value);
   };
-
   return (
     <section className="sneakers_list">
       <div className="sneakers_list-up">
@@ -45,14 +45,20 @@ let HomePage = ({
           .map((e, index) => {
             return (
               <SneakerItem
+                sneakersCartArr={sneakersCartArr}
                 likedArr={sneakersLikedArr}
-                updateLikedArr={setSneakersLikedArr}
-                key={index}
+                updateLikedArr={updateLikedArr}
                 updateCardArr={setSneakersCartArr}
+                id={e.id}
+                key={index}
                 name={e.name}
                 price={e.price}
                 imgURL={e.imgURL}
                 sneakerObj={e}
+                imgPlusClicked={true}
+                isLiked={sneakersLikedArr.some(
+                  (obj) => (obj.name) === (e.name)
+                )}
               />
             );
           })}

@@ -3,17 +3,30 @@ import React from "react";
 import axios from "axios";
 
 let SneakerItem = ({
+  id,
   name,
   price,
   imgURL,
+  updateLikedArr,
   updateCardArr,
   sneakerObj,
   likedArr,
-  updateLikedArr,
-  isLiked = false
+  sneakersCartArr,
+  isLiked = false,
+  imgPlusClicked = false,
 }) => {
-  const [plusBtn, setPlusBtn] = React.useState(false);
+  const [plusBtn, setPlusBtn] = React.useState(imgPlusClicked);
   const [likedBtn, setLikedBtn] = React.useState(isLiked);
+
+  // for change plus icon when you delete item from card
+  if (plusBtn) {
+    if (sneakersCartArr.some((e) => e.name === sneakerObj.name)) {
+    } else {
+      setPlusBtn(false);
+    }
+  }
+
+ 
 
   const onClickLiked = () => {
     if (likedBtn === true) {
@@ -22,9 +35,23 @@ let SneakerItem = ({
         "https://626e76ade58c6fabe2df4f7c.mockapi.io/likedSneakers",
         sneakerObj
       );
-      setLikedBtn(!likedBtn);
+      setLikedBtn(true);
     }
-    console.log(likedArr);
+
+    if (
+      likedArr.find((e) => {
+        return e.id === sneakerObj.id;
+      })
+    ) {
+      axios.delete(
+        `https://626e76ade58c6fabe2df4f7c.mockapi.io/likedSneakers/${sneakerObj.id}`
+      );
+      updateLikedArr(
+        likedArr.filter((e) => {
+          return e.id !== sneakerObj.id;
+        })
+      );
+    }
   };
 
   const onClickPlus = () => {
@@ -35,10 +62,10 @@ let SneakerItem = ({
         sneakerObj
       );
       // для отображения только при разовой работе с приложением сникеров в корзине
-      // updateCardArr((prev) => {
-      //   return [...prev, sneakerObj];
-      // });
-      setPlusBtn(!plusBtn);
+      updateCardArr((prev) => {
+        return [...prev, sneakerObj];
+      });
+      setPlusBtn(true);
     }
   };
 
@@ -58,7 +85,7 @@ let SneakerItem = ({
           <span className={styles.price_number}>{price}</span>
         </div>
         <img
-          onClick={onClickPlus}
+          onClick={() => onClickPlus()}
           className={styles.add_btn}
           src={plusBtn ? "/img/basket_btn_clicked.svg" : "/img/add_btn.svg"}
           alt=""
