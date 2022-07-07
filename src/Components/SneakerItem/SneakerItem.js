@@ -14,6 +14,7 @@ let SneakerItem = ({
   sneakersCartArr,
   isLiked = false,
   imgPlusClicked = false,
+  orderSneakers,
 }) => {
   const [plusBtn, setPlusBtn] = React.useState(imgPlusClicked);
   const [likedBtn, setLikedBtn] = React.useState(isLiked);
@@ -25,8 +26,6 @@ let SneakerItem = ({
       setPlusBtn(false);
     }
   }
-
- 
 
   const onClickLiked = () => {
     if (likedBtn === true) {
@@ -55,7 +54,9 @@ let SneakerItem = ({
   };
 
   const onClickPlus = () => {
-    if (plusBtn === true) {
+    if (orderSneakers.length > 0) {
+      alert("Для оформления нового заказа омените прошлый в личном кабинете");
+    } else if (plusBtn === true) {
     } else {
       axios.post(
         "https://626e76ade58c6fabe2df4f7c.mockapi.io/sneakersCard",

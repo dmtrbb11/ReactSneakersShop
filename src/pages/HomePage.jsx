@@ -8,6 +8,7 @@ let HomePage = ({
   updateLikedArr,
   setSneakersCartArr,
   sneakersCartArr,
+  orderSneakers,
 }) => {
   let searchSneakers = (e) => {
     setSearchValue(e.target.value);
@@ -56,9 +57,8 @@ let HomePage = ({
                 imgURL={e.imgURL}
                 sneakerObj={e}
                 imgPlusClicked={true}
-                isLiked={sneakersLikedArr.some(
-                  (obj) => (obj.name) === (e.name)
-                )}
+                isLiked={sneakersLikedArr.some((obj) => obj.name === e.name)}
+                orderSneakers={orderSneakers}
               />
             );
           })}

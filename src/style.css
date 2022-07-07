@@ -108,7 +108,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: '';
+  content: "";
   content: none;
 }
 
@@ -121,14 +121,11 @@ a {
   text-decoration: none;
 }
 
-
-
 ins {
   background-color: #ff9;
   color: #000;
   text-decoration: none;
 }
-
 
 mark {
   background-color: #ff9;
@@ -152,7 +149,6 @@ table {
   border-spacing: 0;
 }
 
-
 hr {
   display: block;
   height: 1px;
@@ -169,20 +165,19 @@ select {
 
 /* ////////////////////////////////////////////// MAIN CSS /////////////////////////////////////////////////////// */
 
-html{
+html {
   min-height: 100%;
 }
 
-body{
+body {
   min-height: 100%;
   box-sizing: border-box;
-  background-color:  #E7F6FF;
-  font-family: 'Inter',
-  sans-serif; /* 400 500 700 */
+  background-color: #e7f6ff;
+  font-family: "Inter", sans-serif; /* 400 500 700 */
   font-weight: 700;
 }
 
-.container{
+.container {
   box-sizing: border-box;
   width: 1080px;
   margin: 0 auto;
@@ -194,18 +189,13 @@ body{
   border-radius: 20px;
 }
 
-
-.slider{
-  margin-bottom: 40px;
-}
-
-.sneakers_list-up{
+.sneakers_list-up {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
 }
-.sneakers_list-h2{
+.sneakers_list-h2 {
   font-weight: 700;
   font-size: 32px;
   line-height: 39px;
@@ -214,16 +204,16 @@ body{
   margin-bottom: 30px;
 }
 
-.sneakers_list-input{
+.sneakers_list-input {
   width: 250px;
   height: 45px;
   padding-left: 45px;
   padding-right: 45px;
-  border: 1px solid #F3F3F3;
+  border: 1px solid #f3f3f3;
   box-sizing: border-box;
   border-radius: 10px;
   outline: none;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -231,12 +221,11 @@ body{
   color: #000000;
 }
 
-
-.label{
+.label {
   position: relative;
 }
 
-.search_loop-img{
+.search_loop-img {
   content: " ";
   position: absolute;
   top: 15px;
@@ -247,7 +236,7 @@ body{
   cursor: pointer;
 }
 
-.search_deleteText-img{
+.search_deleteText-img {
   content: " ";
   position: absolute;
   top: 15px;
@@ -258,14 +247,27 @@ body{
   cursor: pointer;
 }
 
-
-.sneakers_list-grid{
+.sneakers_list-grid {
   display: grid;
   grid-template-columns: repeat(4, 210px);
   row-gap: 40px;
   justify-content: space-between;
 }
 
-
-
-
+.deleteOrder_btn {
+  margin-top: 40px;
+  cursor: pointer;
+  margin-left: 15px;
+  border: none;
+  outline: none;
+  background: #9dd458;
+  border-radius: 18px;
+  width: 245px;
+  height: 55px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
+}

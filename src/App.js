@@ -13,6 +13,7 @@ function App() {
   const [sneakersArr, setSneakersArr] = React.useState([]); // sneakers on the page
   const [sneakersCartArr, setSneakersCartArr] = React.useState([]); // sneakers in the card
   const [sneakersLikedArr, setSneakersLikedArr] = React.useState([]); // liked sneakers
+  const [orderSneakers, setOrderSneakers] = React.useState([]); // order
   const [searchValue, setSearchValue] = React.useState("");
 
   React.useEffect(() => {
@@ -20,6 +21,9 @@ function App() {
       const sneakersRequest = await fetch(
         "https://626e76ade58c6fabe2df4f7c.mockapi.io/sneakers"
       ).then((response) => response.json());
+      const orderRequest = await axios.get(
+        "https://626e76ade58c6fabe2df4f7c.mockapi.io/Order"
+      );
       const cardRequest = await axios.get(
         "https://626e76ade58c6fabe2df4f7c.mockapi.io/sneakersCard"
       );
@@ -28,6 +32,7 @@ function App() {
       );
 
       setSneakersArr(sneakersRequest);
+      setOrderSneakers(orderRequest.data);
       setSneakersCartArr(cardRequest.data);
       setSneakersLikedArr(likedRequest.data);
     }
@@ -62,8 +67,11 @@ function App() {
           closeCardClick={() => {
             setCartOpened(false);
           }}
+          setCartOpened={setCartOpened}
           sneakersCartArr={sneakersCartArr}
           updateCardArr={setSneakersCartArr}
+          orderSneakers={orderSneakers}
+          setOrderSneakers={setOrderSneakers}
         />
       ) : null}
 
@@ -98,6 +106,7 @@ function App() {
               sneakersLikedArr={sneakersLikedArr}
               updateLikedArr={setSneakersLikedArr}
               setSneakersCartArr={setSneakersCartArr}
+              orderSneakers={orderSneakers}
             />
           }
         ></Route>
@@ -109,10 +118,19 @@ function App() {
               sneakersLikedArr={sneakersLikedArr}
               setSneakersLikedArr={setSneakersLikedArr}
               setSneakersCartArr={setSneakersCartArr}
+              orderSneakers={orderSneakers}
             />
           }
         ></Route>
-        <Route path="/profile" element={<ProfilePage />}></Route>
+        <Route
+          path="/profile"
+          element={
+            <ProfilePage
+              setOrderSneakers={setOrderSneakers}
+              orderSneakers={orderSneakers}
+            />
+          }
+        ></Route>
       </Routes>
     </div>
   );

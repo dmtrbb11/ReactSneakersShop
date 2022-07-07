@@ -21,6 +21,7 @@ let LikedPage = (props) => {
               sneakersCartArr={props.sneakersCartArr}
               updateLikedArr={props.setSneakersLikedArr}
               updateCardArr={props.setSneakersCartArr}
+              orderSneakers={props.orderSneakers}
             />
           );
         })}
