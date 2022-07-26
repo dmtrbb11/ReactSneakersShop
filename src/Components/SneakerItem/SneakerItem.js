@@ -55,7 +55,7 @@ let SneakerItem = ({
 
   const onClickPlus = () => {
     if (orderSneakers.length > 0) {
-      alert("Для оформления нового заказа омените прошлый в личном кабинете");
+      alert("Для оформления нового заказа отмените прошлый в личном кабинете");
     } else if (plusBtn === true) {
     } else {
       axios.post(
